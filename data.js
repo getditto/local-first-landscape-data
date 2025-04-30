@@ -31,7 +31,7 @@ export const data = LandscapeSchema.make({
 			  'Kotlin - Android',
 			  'Java - Server',
 			  'Java - Android',
-			  'Flutter',
+			  'Dart',
 			  'React Native',
 			  'JavaScript Web',
 			  'C# - .NET',
@@ -40,36 +40,48 @@ export const data = LandscapeSchema.make({
 			],   
 			comment: ""
 		  },
+		FrameworkIntegrations: {
+      			data: ['React Native', 'Flutter', '.NET Maui'],
+    			},
 		},
 	Networking: {
+		Protocol: {
+      			data: ['WebSockets', 'HTTPS'],
+    		},
 		Topology: { data: 'Mesh Network' },
 	},
 	ServerSideData: {
-		PersistenceMechanism: { data: ['N/A'] },
+		PersistenceMechanism: { data: ['Ditto Server', 'MongoDB Atlas'] },
 		DataModelParadigm: { data: 'Document' },
 	},
 	ClientSideData: {
-		QueryAPI: { data: ['Async'] },
-		PersistenceMechanism: { data: [] },
-		PersistenceFeatures: { data: 'Indexes' },
+		QueryAPI: { data: ['Async', 'Reactive queries'] },
+		PersistenceMechanism: { data: ['Proprietary'] },
+		PersistenceFeatures: { data: 'Indexes', 'Transactions' },
 		DataModel: { data: 'Document' },
-		OfflineReads: { data: 'Full Support' },
-		OfflineWrites: { data: 'Local conflict resolution' },
-		DataSize: { data: 'Up to 5-10 MB per document' },
+		OfflineReads: { data: 'Full Support', comment: 'Dynamic query support.' },
+		OptimisticUpdates: {
+      			data: 'Yes',
+    		},
+    		OfflineWrites: {
+      			data: 'Yes',
+    		},
 	},
 	SynchronizationStrategy: {
-		FullOrPartialReplication: { data: ['Full Replication'] },
+		FullOrPartialReplication: { data: ['Full Replication', 'Partial Replication'],
+					  comment:
+        'Defined using [subscriptions](https://docs.ditto.live/key-concepts/syncing-data).  Supports flexible [authorization](https://docs.ditto.live/key-concepts/authentication-and-authorization) model.',},
 		ConflictHandling: {
 			data: 'Automatic via CRDT',
 			comment: 'All changes are recorded and conflicts are resolved automatically'
 		  },
-		WhereResolutionOccurs: { data: 'Client' },
+		WhereResolutionOccurs: { data: ['Client', 'Server'] },
 		WhatGetsSynced: {
 			data: { ClientToClient: 'ops', ClientToServer: 'ops', ServerToClient: 'ops' },
 			comment: 'There is no distinction between client and server.'
 		  },
 		  Authority: {
-			data: 'Decentralized'
+			data: 'Centralized'
 		  },
 	},
 })
