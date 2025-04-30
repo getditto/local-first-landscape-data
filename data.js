@@ -9,7 +9,7 @@ export const data = LandscapeSchema.make({
 	MaturityLevel: "Production-Ready",
 	Website: 'https://www.ditto.com',
 	GitHub: "https://github.com/getditto",
-	InitialReleaseDate: new Date("2018-11-30"),
+	InitialReleaseDate: new Date("2019-04-30"),
 	GetStarted: 'https://docs.ditto.live/home/introduction#sdk-quickstart-guides',
 	Deployment: ['Self-hosted', 'Hosted'],
 	License: 'Proprietary',
