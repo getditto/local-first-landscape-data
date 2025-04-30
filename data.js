@@ -10,7 +10,7 @@ export const data = LandscapeSchema.make({
 	Website: 'https://www.ditto.com',
 	GitHub: "https://github.com/getditto",
 	GetStarted: 'https://docs.ditto.live/home/introduction#sdk-quickstart-guides',
-	Deployment: ['Self-hosted', 'Cloud'],
+	Deployment: ['Self-hosted', 'Hosted'],
 	License: 'Proprietary',
 	AppTarget: {
 		Platform: { data: [
