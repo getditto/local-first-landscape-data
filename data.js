@@ -47,7 +47,7 @@ export const data = LandscapeSchema.make({
 	Networking: {
 		Protocol: {
       			data: ['WiFi LAN', 'Bluetooth', 'P2P WiFi', 'TCP', 'HTTP', 'WebSockets'],
-			comments: `We've developed an intelligent sync system that automatically discovers local devices, establishes a connection, and seamlessly switches between active transports when syncing data (Bluetooth, P2P WiFi, LAN, Websockets) so that if one transport goes down, it automatically switches to the next best one, optimizing for speed. "Resilient Networking" in this context means networking that can network in any environment and dynamically "heal" itself if connections break`
+			comment: `We've developed an intelligent sync system that automatically discovers local devices, establishes a connection, and seamlessly switches between active transports when syncing data (Bluetooth, P2P WiFi, LAN, Websockets) so that if one transport goes down, it automatically switches to the next best one, optimizing for speed. "Resilient Networking" in this context means networking that can network in any environment and dynamically "heal" itself if connections break`
     		},
 		Topology: { data: 'Mesh Network' },
 	},
@@ -66,7 +66,7 @@ export const data = LandscapeSchema.make({
 	ClientSideData: {
 		QueryAPI: { data: ['Async', 'Reactive queries'] },
 		PersistenceMechanism: { data: ['SQLite'] },
-		PersistenceFeatures: { data: 'Indexes', 'Transactions' },
+		PersistenceFeatures: { data: 'Indexes' },
 		LocalRefreshLatency: {
       			data: '10ms-2s',
       			comment:
