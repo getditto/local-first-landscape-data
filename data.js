@@ -9,13 +9,13 @@ export const data = LandscapeSchema.make({
 	MaturityLevel: "Production-Ready",
 	Website: 'https://www.ditto.com',
 	GitHub: "https://github.com/getditto",
+	InitialReleaseDate: new Date("2018-11-30"),
 	GetStarted: 'https://docs.ditto.live/home/introduction#sdk-quickstart-guides',
 	Deployment: ['Self-hosted', 'Hosted'],
 	License: 'Proprietary',
 	AppTarget: {
 		Platform: { data: [
 		  "Browser",
-		  "Node",
 		  "iOS",
 		  "Android",
 		  "macOS",
@@ -41,30 +41,47 @@ export const data = LandscapeSchema.make({
 			comment: ""
 		  },
 		FrameworkIntegrations: {
-      			data: ['React Native', 'Flutter', '.NET Maui'],
+      			data: ['React Native', 'Flutter', '.NET Maui', 'Jetpack Compose', 'SwiftUI'],
     			},
 		},
 	Networking: {
 		Protocol: {
-      			data: ['WebSockets', 'HTTPS'],
+      			data: ['WiFi LAN', 'Bluetooth', 'P2P WiFi', 'TCP', 'HTTP', 'WebSockets'],
+			comments: `We've developed an intelligent sync system that automatically discovers local devices, establishes a connection, and seamlessly switches between active transports when syncing data (Bluetooth, P2P WiFi, LAN, Websockets) so that if one transport goes down, it automatically switches to the next best one, optimizing for speed. "Resilient Networking" in this context means networking that can network in any environment and dynamically "heal" itself if connections break`
     		},
 		Topology: { data: 'Mesh Network' },
 	},
 	ServerSideData: {
-		PersistenceMechanism: { data: ['Ditto Server', 'MongoDB Atlas'] },
+		PersistenceMechanism: { data: ['Custom'] },
 		DataModelParadigm: { data: 'Document' },
+		ExistingDatabaseSupport: {
+      			data: 'HTTP/Webhooks and real-time via CDC Connectors (Kafka-based)',
+    		},
+		DataSize: {
+      			data: 'No theoretical limit',
+      			comment:
+        			'No theoretical limit, due to cloud scaling, but we offer benchmarking and performance services to validate & scale cloud resources for larger use cases.',
+    		},
 	},
 	ClientSideData: {
 		QueryAPI: { data: ['Async', 'Reactive queries'] },
-		PersistenceMechanism: { data: ['Proprietary'] },
+		PersistenceMechanism: { data: ['SQLite'] },
 		PersistenceFeatures: { data: 'Indexes', 'Transactions' },
-		DataModel: { data: 'Document' },
+		LocalRefreshLatency: {
+      			data: '10ms-2s',
+      			comment:
+        			'Depends on cardinality, query optimization plan, and local data size.',
+    		},
+		DataModel: { data: 'Document', comment: 'Queries are SQL, records are document-oriented.' },
 		OfflineReads: { data: 'Full Support', comment: 'Dynamic query support.' },
 		OptimisticUpdates: {
       			data: 'Yes',
     		},
     		OfflineWrites: {
-      			data: 'Yes',
+      			data: 'Full local conflict resolution',
+    		},
+   		DataSize: {
+      			data: 'up to the size of the hard drive',
     		},
 	},
 	SynchronizationStrategy: {
@@ -75,13 +92,38 @@ export const data = LandscapeSchema.make({
 			data: 'Automatic via CRDT',
 			comment: 'All changes are recorded and conflicts are resolved automatically'
 		  },
-		WhereResolutionOccurs: { data: ['Client', 'Server'] },
+		WhereResolutionOccurs: { data: 'Client' },
 		WhatGetsSynced: {
-			data: { ClientToClient: 'ops', ClientToServer: 'ops', ServerToClient: 'ops' },
-			comment: 'There is no distinction between client and server.'
+			data: { ClientToClient: 'document deltas', },
+			comment: 'Ditto has client-to-client deltas, and the server is running the same CRDT as the client, and is not required.'
 		  },
 		  Authority: {
-			data: 'Centralized'
-		  },
+      			data: 'Decentralized',
+      			comment: 'Decentralized via authentication servers.',
+    		},
 	},
+	 AuthIdentity: {
+    		Encryption: {
+      		data: 'Built-in e2ee',
+    		},
+    		AuthenticationMethod: {
+      			data: ['JWT Tokens'],
+    		},
+    		AuthorizationPermissions: {
+      			data: 'Custom-mapped ACLs',
+    		},
+  	},
+  	UIRelated: {
+    		Components: {
+      			data: ['Presence'],
+      			comment:
+        			'SDK provides which peers you are connected to, and over what transports.',
+    			},
+  		},
+  	DevelopmentWorkflowsDX: {
+    		DebuggingTools: {
+      			data: ['DevTools', 'Data Inspector', 'Network Inspector'],
+      			comment: 'Open source debugging and diagnostic tools for developers.',
+    		},
+  	},
 })
